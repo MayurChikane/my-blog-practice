@@ -1,0 +1,1 @@
+This is a test markdown post added to the content folder.
