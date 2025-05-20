@@ -1,4 +1,4 @@
-name: Python CI
+name: Node.js CI
 
 on: [push, pull_request]
 
@@ -7,18 +7,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.8, 3.9, 3.10, 3.11]
+        node-version: [16, 18, 20]  # You can adjust versions as needed
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          python-version: ${{ matrix.python-version }}
+          node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: npm install
 
       - name: Run tests
-        run: pytest
+        run: npm test
